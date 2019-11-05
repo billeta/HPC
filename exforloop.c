@@ -13,7 +13,7 @@ float main(void)
     #pragma omp parallel for 
     for (i = 0; i < size ; i++){ 
         array[i] = (i*1.0)/(size*1.0);
-        printf("Hello, World! I'm thread #%d in a group of %d threads computing the %dth number \n", omp_get_thread_num(), omp_get_num_threads(), i);
+        printf("I'm thread  number %d in a group of %d threads computing the %dth number \n", omp_get_thread_num(), omp_get_num_threads(), i);
     } 
   
      // print array 
