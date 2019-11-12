@@ -18,10 +18,12 @@ float main(void)
    midPoint=0;
 
    first=((b-a)/N);
+   #pragma omp parallel default(none) shared(N, a, b) private(i, carre) reduction(+:midPoint)
 
+   #pragma for schedule(runtime)
    for(i=0; i <= (N-1); i++){
-      carre = (a+(i+(1/2))*((b-a)/N))*(a+(i+(1/2))*((b-a)/N));
-      midPoint = midPoint + (4/(1+carre));
+      carre = (1/(1+(a+(i+(1/2))*((b-a)/N))*(a+(i+(1/2))*((b-a)/N))));
+      midPoint += carre;
    }
   
    midPoint = first*midPoint;
